@@ -10,6 +10,7 @@ from sklearn.svm import SVC
 from skimage.feature import hog
 from skimage import exposure
 from skimage import exposure
+from joblib import dump
 
 # Define the path to the JSON files and the data folder
 data_folder = os.path.join(r"C:\Studia\Modelowanie\Projekt_Informatyka\videos")
@@ -120,6 +121,10 @@ pipeline = make_pipeline(StandardScaler(), PCA(n_components=0.95), SVC(kernel='r
 
 # Train the model
 pipeline.fit(X_train, y_train)
+
+# Assume 'pipeline' is your trained scikit-learn pipeline or model
+dump(pipeline, 'sign_language_classifier.joblib')
+
 
 # Evaluate the model
 print(f"Training Accuracy: {pipeline.score(X_train, y_train)}")
